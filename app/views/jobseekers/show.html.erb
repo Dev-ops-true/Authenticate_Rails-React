@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @jobseeker.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @jobseeker.lastname %>
+</p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @jobseeker.contact %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @jobseeker.email %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @jobseeker.address %>
+</p>
+
+<p>
+  <strong>Job title:</strong>
+  <%= @jobseeker.job_title %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @jobseeker.password %>
+</p>
+
+<p>
+  <strong>Password confirmation:</strong>
+  <%= @jobseeker.password_confirmation %>
+</p>
+
+<%= link_to 'Edit', edit_jobseeker_path(@jobseeker) %> |
+<%= link_to 'Back', jobseekers_path %>
