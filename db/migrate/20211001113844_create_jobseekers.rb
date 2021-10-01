@@ -7,8 +7,7 @@ class CreateJobseekers < ActiveRecord::Migration[6.1]
       t.string :email
       t.string :address
       t.string :job_title
-      t.string :password
-      t.string :password_confirmation
+      t.string :password_digest
 
       t.timestamps
     end

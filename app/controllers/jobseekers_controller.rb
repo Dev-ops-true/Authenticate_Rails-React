@@ -1,4 +1,5 @@
 class JobseekersController < ApplicationController
+  protect_from_forgery with: :null_session
   before_action :set_jobseeker, only: %i[ show edit update destroy ]
 
   # GET /jobseekers or /jobseekers.json
@@ -21,7 +22,15 @@ class JobseekersController < ApplicationController
 
   # POST /jobseekers or /jobseekers.json
   def create
-    @jobseeker = Jobseeker.new(jobseeker_params)
+    @jobseeker = Jobseeker.create(
+      firstname: params['firstname'],
+      lastname: params['lastname'],
+      contact: params['contact'],
+      email: params['email'],
+      address: params['address'],
+      job_title: params['job_title'],
+      password: params['password']  
+    )
 
     if @jobseeker.save
       render json: {
