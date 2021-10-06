@@ -1,58 +1,75 @@
-import React, { useState } from 'react';
-import axios from 'axios'
+import React, { Component, useState } from "react";
+import { Link } from 'react-router-dom'
+import axios from "axios";
 
-const Login = () => {
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+    this.state = {
+      email: "",
+      password: "",
+      loginErrors: "",
+    };
 
-  const emailChangeHandler = (event) => {
-    setEmail(event.target.value)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  const passwordChangeHandler = (event) => {
-    setPassword(event.target.value)
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   }
 
-  const submitLoginForm = (event) => {
-    axios.post('http://localhost:3000/sessions',
-    {
-      email:email,
-      password: password
-    },
-    { withCredentials: true }
-    )
-    .then(response => {
-      console.log(response)
-    })
-    .catch(error => {
-      console.log(error)
-    })
+  handleSubmit(event) {
+    const { email, password } = this.state;
+    axios
+      .post(
+        "http://localhost:3000/sessions",
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        if (response.data.loggedInStatus == "LOGGED_IN") {
+          this.props.handleSuccessfulAuth(response.data);
+          this.props.history.push("/")
+        }
+      })
+      .catch((error) => {
+        console.log("login error", error);
+      });
+    event.preventDefault();
   }
 
-  return (
-    <div>
-        <form onSubmit={submitLoginForm}>
-          <label htmlFor="email">Email</label>
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
           <input
             type="email"
             name="email"
             placeholder="Email"
-            onChange={emailChangeHandler}
+            value={this.state.email}
+            onChange={this.handleChange}
             required
           />
-          <label htmlFor="password">Password</label>
+
           <input
             type="password"
             name="password"
             placeholder="Password"
-            onChange={passwordChangeHandler}
+            value={this.state.password}
+            onChange={this.handleChange}
             required
           />
           <button type="submit">Login</button>
+          <Link to="/resetpassword" >Forgot Password?</Link>
         </form>
       </div>
-  );
+    );
+  }
 }
-
-export default Login;

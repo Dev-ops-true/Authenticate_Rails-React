@@ -1,4 +1,4 @@
-module CurrentUserConcern
+module CurrentJobseekerConcern
   extend ActiveSupport::Concern
 
   included do

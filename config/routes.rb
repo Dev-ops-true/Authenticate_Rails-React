@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   delete :logout, to: "sessions#logout"
   post "password/reset", to: "password_resets#create"
   patch "password/reset/edit", to: "password_resets#update"
+  get :logged_in, to: "sessions#logged_in"
   resources :jobseekers
   root to: "pages#index"
 

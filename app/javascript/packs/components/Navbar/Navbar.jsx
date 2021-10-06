@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const Navbar = () => {
+const Navbar = (props) => {
 
   const logoutHandler = () => {
     axios
     .delete("http://localhost:3000/logout", { withCredentials: true})
     .then(response => {
-      console.log(response.data)
+      props.handleLogout()
+      console.log(props.loggedInStatus)
     }).catch(error => {
       console.log("logout error", error)
     })
@@ -17,8 +18,8 @@ const Navbar = () => {
     <div>
       <ul>
         <li>
+
           <Link to="/" >Home</Link>
-          <Link to="/about" >About</Link>
           <Link to="/register" >Register</Link>
           <Link to="/login" >Login</Link>
           <button onClick={logoutHandler}>Log Out</button>

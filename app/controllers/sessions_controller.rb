@@ -1,14 +1,13 @@
 class SessionsController < ApplicationController
-  include CurrentUserConcern
+  include CurrentJobseekerConcern
 
   def create
     jobseeker = Jobseeker.find_by(email: params["email"]).try(:authenticate, params["password"])
-    p jobseeker
     if jobseeker
       session[:jobseeker_id] = jobseeker.id
       render json: {
         status: :created,
-        logged_in: true,
+        loggedInStatus: "LOGGED_IN",
         jobseeker: jobseeker
       }
     else
@@ -17,22 +16,23 @@ class SessionsController < ApplicationController
   end
 
   def logged_in
-    
     if @current_jobseeker
       render json: {
-        logged_in: true,
+        loggedInStatus: "LOGGED_IN",
         jobseeker: @current_jobseeker 
       }
     else 
       render json: {
-        logged_in: false,
-        check: session[:jobseeker_id]
+        loggedInStatus: "NOT_LOGGED_IN"
       }
     end
   end
 
   def logout
     reset_session
-    render json: { status: 200, logged_out: true }
+    render json: { 
+      status: 200, 
+      loggedInStatus: "NOT_LOGGED_IN" 
+    }
   end
 end
