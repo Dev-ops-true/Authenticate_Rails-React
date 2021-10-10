@@ -34,7 +34,7 @@ export default class Login extends Component {
         { withCredentials: true }
       )
       .then((response) => {
-        if (response.data.loggedInStatus == "LOGGED_IN") {
+        if (response.data.loggedInStatus === "LOGGED_IN") {
           this.props.handleSuccessfulAuth(response.data);
           this.props.history.push("/")
         }
@@ -47,7 +47,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div>
+      <div className="form-wrapper">
         <form onSubmit={this.handleSubmit}>
           <input
             type="email"
@@ -66,8 +66,9 @@ export default class Login extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Login</button>
+          <button className='submit-button' type="submit">Login</button>
           <Link to="/resetpassword" >Forgot Password?</Link>
+          <Link to="/register" >Register</Link>
         </form>
       </div>
     );

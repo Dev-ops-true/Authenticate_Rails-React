@@ -1,18 +1,17 @@
-import React, { Component } from 'react'
-import axios from 'axios'
+import React, { Component } from "react";
+import axios from "axios";
 
 export default class ResetPassword extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       email: "",
       resetErrors: "",
-      resetStatus: ""
+      resetStatus: "",
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleSubmit(event) {
@@ -23,25 +22,22 @@ export default class ResetPassword extends Component {
         {
           email: email,
         },
-        { withCredentials: true },
+        { withCredentials: true }
       )
       .then((response) => {
-        console.log(response)
+        console.log(response);
       })
       .catch((error) => {
         console.log("reset error", error);
       });
-      event.preventDefault();
+    event.preventDefault();
   }
-  
 
   handleChange(event) {
-    console.log(event.target.value);
     this.setState({
       [event.target.name]: event.target.value,
     });
   }
-
 
   render() {
     return (
@@ -54,9 +50,9 @@ export default class ResetPassword extends Component {
             onChange={this.handleChange}
             required
           />
-          <button type="submit">Reset Password</button>
+          <button className='submit-button' type="submit">Reset Password</button>
         </form>
       </div>
-    )
+    );
   }
 }

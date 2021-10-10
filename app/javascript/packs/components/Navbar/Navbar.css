@@ -1,0 +1,47 @@
+.navbar {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+  background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+  position: sticky;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  top: 0;
+  justify-content: end;
+}
+
+.navbar-links {
+  margin: 20px;
+  padding: 0px 10px;
+  list-style-type: none;
+}
+
+.navbar-link {
+  margin: 0px 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: blue;
+  color: #f3f3f3;
+  border-radius: 10px;
+}
+
+.logout-btn {
+  margin: -10px 10px;
+  padding: 10px 20px;
+  background-color: blue;
+  color: rgb(243, 243, 243);
+  border-radius: 10px;
+  border: none;
+}
+
+.logout-btn:hover {
+  background-color: rgb(81, 154, 214);
+}
+
+.navbar-link:hover {
+  background-color: rgb(81, 154, 214);
+}
+
